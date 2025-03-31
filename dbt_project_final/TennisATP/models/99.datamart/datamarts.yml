@@ -1,0 +1,37 @@
+version: 1
+
+models:
+- name: fact_matches_atp
+  columns:
+    - name: ID
+      data_tests:
+        - unique
+    - name: tourney_level
+      data_tests:
+        - not_null
+        - accepted_values:
+              values: ['G', 'M', 'A']
+    - name: avg_first_serve_won_winner
+      data_tests:
+        - not_null
+        - dbt_expectations.expect_column_values_to_be_between:
+            min_value: 0
+    - name: avg_second_serve_won_winner
+      data_tests:
+        - not_null
+        - dbt_expectations.expect_column_values_to_be_between:
+            min_value: 0
+    - name: avg_first_serve_won_loser
+      data_tests:
+        - not_null
+        - dbt_expectations.expect_column_values_to_be_between:
+            min_value: 0
+    - name: avg_second_serve_won_loser
+      data_tests:
+        - not_null
+        - dbt_expectations.expect_column_values_to_be_between:
+            min_value: 0
+    - name: tourney_date
+      data_tests:
+        - dbt_expectations.expect_column_values_to_be_in_type_list:
+            column_type_list: [date, datetime]

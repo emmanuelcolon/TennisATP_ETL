@@ -1,0 +1,5 @@
+version: 1
+
+models:
+  - name: tennis_atp
+    description: "Modelo de datos de los partidos de la ATP Tennis"

@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  c_dbt_final:
+    build:
+      context: .      
+    image: t_dbt_2
+    container_name: c_dbt_final
+    volumes:
+      - ./dbt_project_final:/dbt_project_final
+    command: tail -f /dev/null
+    ports:
+      - "8089:8089"
