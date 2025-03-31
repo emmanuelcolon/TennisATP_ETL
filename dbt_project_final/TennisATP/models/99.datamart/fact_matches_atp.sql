@@ -13,3 +13,7 @@ WITH _tmp_data AS (
 )
 
 SELECT * FROM _tmp_data
+{% if is_incremental() %}
+  -- En el modo incremental, solo se procesan los registros nuevos o modificados
+  where tourney_date > (select max(tourney_date) from {{ this }})
+{% endif %}
